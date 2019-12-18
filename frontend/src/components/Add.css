@@ -1,0 +1,8 @@
+.Add{
+    /* width: 100vw; */
+    margin: 0;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-gap: 20px;
+  
+  }
