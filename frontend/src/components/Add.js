@@ -44,10 +44,8 @@ function Add() {
        
         <div className = "Add" style={{backgroundColor:"grey"}}>
             <div>
-            <input type= "file"/>
-                <button>Upload</button>
-            </div>
-            <div>
+            <ImageUpload></ImageUpload>
+            <div/>
             <p>This is the Add view!</p>
           Description: <input id="description" type="text" onChange={e => setInputDescription(e.target.value)}/><br/>
           Discount Rate: <input id="discountrate" type="text" onChange={e => setInputDiscountRate(e.target.value)}/><br/>

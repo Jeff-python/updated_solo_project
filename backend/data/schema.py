@@ -38,6 +38,7 @@ def table(dbpath):
                 pickuplocation VARCHAR(128),
                 zipcode INTEGER,
                 user_key VARCHAR(128)
+                
                 );"""
         cursor.execute(SQL)
 

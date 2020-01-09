@@ -5,6 +5,9 @@ import {SearchBox} from '../search-box/search-box.component';
 // import Listings from './components/Listings'
 import {SearchZip} from '../search-zip/search-zip.component';
 import {useState} from 'react';
+import InputBase from '@material-ui/core/InputBase';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import SearchIcon from '@material-ui/icons/Search';
 // import axios from 'axios';
 // import CardList from '../card-list'
 
@@ -14,12 +17,75 @@ import {useState} from 'react';
 // import SignInAndSignUpPage from '../login/login';
 
 
+const useStyles = makeStyles(theme => ({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200,
+    },
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+}));
 
+
+// const classes = useStyles();
 
 class Home extends Component {
+  
   constructor() {
     super();
-    
     this.state = {
       monsters:[],
       searchField: '',
@@ -27,9 +93,12 @@ class Home extends Component {
       monsterzipcode:'',
       zipcode: ''
 
+    
+
       
     };
-
+    
+    
 
 
 
@@ -50,6 +119,8 @@ SearchZip() {
   // const [data, setData] = useState({});
   // const [zipcode, setZipcode] = useState('');
   const url = `/rest/95igBcYkqxsJtbxZ1OwqKHqC2sNPLVDWoVsk6ez82VVZyPMNIUl2jOMqxQx3ochI/radius.json/${this.state.zipcode}/5/miles?minimal`
+
+
 
   
 
@@ -103,6 +174,7 @@ async componentDidMount() {
 // }
 
   render() { 
+    
     const { monsters, searchField, monsterId } = this.state;
     // console.log(monsters)
     const filteredMonsters = monsters.filter(monster => 
@@ -122,6 +194,22 @@ async componentDidMount() {
       <div className="App">
            <SearchBox path = '/' component ={SearchBox} placeholder ='search' handleChange ={e=> this.setState({ searchField: e.target.value})} />
            <input type = "search" onChange={e => this.setState({zipcode: e.target.value})} />
+
+           {/* <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              onChange={e => this.setState({zipcode: e.target.value})} 
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div> */}
+
            <button onClick={e => this.SearchZip()}>Go</button>
            {/* <SearchZip path = '/' setZips={this.setState} monsterzipcode = {this.state.monsterzipcode} placeholder ='search' handleChange ={e=> this.setState({ monsterzipcode: e.target.value})} /> */}
     
