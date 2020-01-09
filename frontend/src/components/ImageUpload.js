@@ -1,6 +1,55 @@
 import React, {Component} from 'react';
 import axios, {post} from 'axios' ;
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
+const useStyles =(theme => ({
+  title: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    // backgroundColor: "red",
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200,
+    },
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+}));
 
 class ImageUpload extends Component {
     constructor(props) {
@@ -27,9 +76,13 @@ class ImageUpload extends Component {
       }
     
     render(){
+      const { classes } = this.props;
       return(
         <div onSubmit = {this.onFormSubmit}>
-          <h1>UPLOAD PNG Images</h1>
+        <Typography variant="h6" className={classes.title}>
+        UPLOAD PNG Images
+        </Typography>
+          
           <input type ="file" name ="file" onChange ={(e)=> this.onChange(e)}/>
           {/* <img src="data:image/png;base64,[]"/> */}
         </div>
@@ -39,4 +92,4 @@ class ImageUpload extends Component {
     }
     }
 
-export default ImageUpload;
+export default withStyles(useStyles)(ImageUpload);

@@ -8,6 +8,7 @@ import {useState} from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import { withStyles } from '@material-ui/core/styles';
 // import axios from 'axios';
 // import CardList from '../card-list'
 
@@ -17,7 +18,7 @@ import SearchIcon from '@material-ui/icons/Search';
 // import SignInAndSignUpPage from '../login/login';
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles =(theme => ({
   grow: {
     flexGrow: 1,
   },
@@ -58,6 +59,7 @@ const useStyles = makeStyles(theme => ({
     color: 'inherit',
   },
   inputInput: {
+    // backgroundColor: "red",
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -92,6 +94,8 @@ class Home extends Component {
       monsterId : 0,
       monsterzipcode:'',
       zipcode: ''
+      // classes: useStyles()
+
 
     
 
@@ -134,7 +138,7 @@ SearchZip() {
         // setData(output);
         // output = (data) => {resolve(data ? JSON.parse(data) : {})}
         this.setState({monsterzipcode:intZip});
-        console.log(output);
+        // console.log(output);
         // props.setZips({monsterzipcode:output})
       } catch (error) {
         // console.log(error);
@@ -174,6 +178,9 @@ async componentDidMount() {
 // }
 
   render() { 
+
+    const { classes } = this.props;
+    // console.log(classes)
     
     const { monsters, searchField, monsterId } = this.state;
     // console.log(monsters)
@@ -187,13 +194,13 @@ async componentDidMount() {
     );
     
     // const filteredname = monsters.filter( monster =>monster.username(searchUsername))
-      console.log(monsters)
-    console.log(filteredMonsters)
+    //   console.log(monsters)
+    // console.log(filteredMonsters)
     return (
      
       <div className="App">
-           <SearchBox path = '/' component ={SearchBox} placeholder ='search' handleChange ={e=> this.setState({ searchField: e.target.value})} />
-           <input type = "search" onChange={e => this.setState({zipcode: e.target.value})} />
+           <SearchBox path = '/' component ={SearchBox} placeholder ='Search by Item' handleChange ={e=> this.setState({ searchField: e.target.value})} />
+           <input type = "search" placeholder ='Search by Zipcode' onChange={e => this.setState({zipcode: e.target.value})} />
 
            {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -235,5 +242,5 @@ async componentDidMount() {
   
 }
 
-export default Home;
+export default withStyles(useStyles)(Home);
 

@@ -6,9 +6,25 @@ import Listings from '../Listings';
 import Header from '../Header';
 
 import './login.style.css';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 200,
+      // alignItems: 'center',
+      // justifyContent: 'center',
+
+    },
+  },
+}));
 
 function SignInAndSignUpPage() {
 
+  const classes = useStyles();
     // Make useState check sessionstorage instead of just using a default value we give it
     // Usually, it just uses a value we give it, but we need to give it a KEY and then check
     // sessionStorage for the value
@@ -81,11 +97,25 @@ function SignInAndSignUpPage() {
       )
     } else {
       data = (
-        <div>
-          <input type="text" onChange={e => setInputUser(e.target.value)} placeholder="Username" />
-          <input type="password" onChange={e => setInputPassword(e.target.value)} placeholder="Password" />
-          <button onClick={e => getToken()}>Log In</button>
-          </div>
+        <div style={{display:"flex"}}>
+            {/* <p>This is the Add view!</p> */}
+            <div style = {{  margin: "auto"}}>
+            <TextField  label="User Name" onChange={e => setInputUser(e.target.value)} placeholder="Username" />
+            <br/>
+            <TextField  label="Password" type="password" onChange={e => setInputPassword(e.target.value)}/>
+            <br/>
+            <br/>
+            <Button size="small" aria-label="small" variant="contained" onClick={e => getToken()}>Submit</Button>
+
+
+        </div>
+        </div>
+
+        // <div>
+        //   <input type="text" onChange={e => setInputUser(e.target.value)} placeholder="Username" />
+        //   <input type="password" onChange={e => setInputPassword(e.target.value)} placeholder="Password" />
+        //   <button onClick={e => getToken()}>Log In</button>
+        //   </div>
       )
     }
   
