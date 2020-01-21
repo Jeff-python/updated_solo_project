@@ -9,6 +9,9 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
+import New from '../Add'
+import { Input } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 // import axios from 'axios';
 // import CardList from '../card-list'
 
@@ -164,7 +167,7 @@ SearchZip() {
 }
 
 async componentDidMount() {
-  fetch('http://localhost:5000/api/get')
+  fetch('http://localhost:5000/api/getitems')
   .then(response => response.json()).then(json=>{
       this.setState({monsters:json.data});
   })
@@ -189,6 +192,7 @@ async componentDidMount() {
       // console.log(this.state.monsterzipcode.includes(monster[10]))
       // String.include
      
+  
     
       //&& monster.zipcode 
     );
@@ -200,7 +204,8 @@ async componentDidMount() {
      
       <div className="App">
            <SearchBox path = '/' component ={SearchBox} placeholder ='Search by Item' handleChange ={e=> this.setState({ searchField: e.target.value})} />
-           <input type = "search" placeholder ='Search by Zipcode' onChange={e => this.setState({zipcode: e.target.value})} />
+           {/* <input type = "search" placeholder ='Search by Zipcode' onChange={e => this.setState({zipcode: e.target.value})} /> */}
+           <Input type = "search" placeholder ='Search by Zipcode' onChange={e => this.setState({zipcode: e.target.value})} />
 
            {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -217,10 +222,13 @@ async componentDidMount() {
             />
           </div> */}
 
-           <button onClick={e => this.SearchZip()}>Go</button>
+           {/* <button onClick={e => this.SearchZip()}>Go</button> */}
+           <Button variant="contained" size="small" color="white" onClick={e => this.SearchZip()}>Go</Button>
+
            {/* <SearchZip path = '/' setZips={this.setState} monsterzipcode = {this.state.monsterzipcode} placeholder ='search' handleChange ={e=> this.setState({ monsterzipcode: e.target.value})} /> */}
     
          <div className = "Button">
+         {/* <button className = "button1" onClick ={ e => this.setState({ monsterId: `${monster[]}`})}  >Fair Price</button>   */}
             <button className = "button1" onClick ={ e => this.setState({ monsterId: '10' })}  >Fair Price</button>          
             <button className = "button2" onClick ={ e => this.setState({ monsterId: '20' })} >Good Price</button>
             <button className = "button3" onClick ={ e => this.setState({ monsterId: '30' })} >Sale Price</button>
@@ -231,6 +239,9 @@ async componentDidMount() {
         
           <CardList monsters={filteredMonsters}>
           </CardList>
+          {/* <New monsters = {monsters}></New> */}
+
+          {/* <addListing monsters ={monsters}> </addListing> */}
          
           {/* <p>{this.state.string}</p>
           <button onClick ={()=>this.setState({string:'hello andre'})}>Change Text</button> */}

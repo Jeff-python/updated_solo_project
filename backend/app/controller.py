@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import requests
 # from models import User
 # from models import Listing
 import sqlite3
@@ -56,7 +57,8 @@ def add_listing():
                 data["telephonenumber"],
                 data["pickuplocation"],
                 data["zipcode"],
-                data["user_key"])
+                data["user_key"],
+                data["imagepath"])
     new_listing.insert()
     return jsonify({"status":"Succes"})
 
@@ -64,16 +66,51 @@ def add_listing():
 def buy():
     data = request.get_json()
     account = User.authenticate(data['user_key'])
+    print(data)
     if account:
         listing = Listing.select_one(data['item_id'])
         listing.quantity -= data['quantity']
+        print(listing.pk, listing.quantity, listing.expirationdate)
         listing.update()
         return jsonify({"status":"success"})
 
-@app.route('/api/get', methods=["GET"])
-def return_listings():
+# @app.route('/api/get', methods=["GET"])
+# def return_listings():
+#     listings = Listing.get_listings()
+#     data = request.get_json()
+#     account = User.authenticate(data['user_key'])
+#     if account:
+#         return jsonify({"data":listings})
+
+# @app.route('/api/get', methods=["GET"])
+# def return_listings():
+#     listings = Listing.get_listings()
+#     return jsonify({"data":listings})
+
+@app.route('/api/listings/<user_key>', methods=["GET"])
+def return_listings(user_key):
+   
+    listings = Listing.select(user_key)
+    print(user_key)
+    return jsonify({"data":listings})
+
+@app.route('/api/getitems', methods=["GET"])
+def get_listings():
     listings = Listing.get_listings()
     return jsonify({"data":listings})
+    
+
+
+# @app.route('/<ticker>', methods=["GET"])
+# def quote(ticker):
+#     url = 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol={}'
+#     response = requests.get(url.format(ticker))
+#     data = response.json()
+   
+    # return jsonify({"price":data['LastPrice'], "name":data["Name"], "symbol":data["Symbol"]}
+
+
+
 
 
 @app.route("/upload", methods=['POST'])

@@ -3,13 +3,12 @@ import ImageUpload from './ImageUpload';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import clsx from 'clsx';
-import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import Home from './Home/Home'
+
+// count = 0
+// export const New = ()=> monsters[0]
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -62,7 +61,9 @@ function Add() {
             "telephonenumber": inputTelephone,
             "pickuplocation": inputPickupLocation,
             "zipcode": Number(inputZipCode),
-            "user_key": sessionStorage.getItem('token')
+            "user_key": sessionStorage.getItem('token'),
+            "imagepath": `/resize_pictures/picture1.jpg`
+            // `/Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend/public/resize_pictures/picture${props.monster.length}.jpg`
         }
         const configs = {
             method: 'POST', 
@@ -73,7 +74,7 @@ function Add() {
         const response = fetch("http://localhost:5000/api/add", configs)
         console.log(response)
     }
-
+// 
     return (
         
        

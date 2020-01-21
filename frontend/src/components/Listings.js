@@ -4,10 +4,12 @@ import Item from './Item';
 function Listings() {
   const [data, setData] = useState([]);
   const [update, Setupdate] = useState(false);
+  const user_key = sessionStorage.getItem('token');
 
   useEffect(() => {
   let getData = async () => {
-    let data = await fetch('http://localhost:5000/api/get');
+    let data = await fetch(`http://localhost:5000/api/listings/${user_key}`)
+    // let data = await fetch(`http://localhost:5000/api/get`);
     data = await data.json();
     console.log(data.data);
     setData(data.data)

@@ -37,7 +37,8 @@ def table(dbpath):
                 telephonenumber INTEGER,
                 pickuplocation VARCHAR(128),
                 zipcode INTEGER,
-                user_key VARCHAR(128)
+                user_key VARCHAR(128),
+                imagepath VARCHAR(128)
                 
                 );"""
         cursor.execute(SQL)

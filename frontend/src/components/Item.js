@@ -21,6 +21,7 @@ function Item(props) {
 
     return (
       <div key={props.index}>
+        <h3>ID: {props.listing[0]}</h3>
         <h3>Description: {props.listing[1]}</h3>
         <h3>Discount Rate: {props.listing[2]}</h3>
         <p>Retail Price: {props.listing[3]}</p>
@@ -31,6 +32,7 @@ function Item(props) {
         <p>Telephone Number: {props.listing[8]}</p>
         <p>Pickup Location: {props.listing[9]}</p>
         <p>Zipcode: {props.listing[10]}</p>
+        <p>imagepath: {props.listing[12]}</p>
        
         <input type="text" placeholder="Quantity" onChange={e => setQuantity(e.target.value)}/>
         <button onClick={e => updateQuantity()}>Update Quantity</button>

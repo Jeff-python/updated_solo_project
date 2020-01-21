@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // BrowserRouter as Router
 import { Link, Switch, Route } from 'react-router-dom';
 // import { CardList } from './components/card-list/card-list.component';
@@ -18,6 +18,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
+import CartIcon from '../src/components/cart-icon/cart-icon.component';
+import CartDropdown from '../src/components/cart-dropdown/cart-dropdown.component';
 // import CardMedia from '@material-ui/core/CardMedia';
 // import Card from '@material-ui/core/Card';
 // import CardActionArea from '@material-ui/core/CardActionArea';
@@ -44,8 +46,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function App() {
+function App({}) {
   const classes = useStyles();
+
+  const useStateWithSessionStorage = sessionStorageKey => {
+    const [token, setToken] = useState(
+      sessionStorage.getItem(sessionStorageKey) || '');
+      return [token, setToken];
+    };
+  const [token, setToken] = useStateWithSessionStorage('token')
+
+  // superheroElement = React.createRef();
+  // handleClick = () => {
+  //   SignInAndSignUpPage.current.changeName();
+  // };
+  useEffect(() => {
+    sessionStorage.setItem('token', token);
+  }, [token])
+  // let token = sessionStorage.getItem('');
+  console.log(token)
+  // function handleClick(){
+  // let token = sessionStorage.getItem('');
+  // console.log(token)}
 
     return (
      
@@ -79,8 +101,20 @@ function App() {
         </CardActionArea>
         </Card> */}
          <Button href ='/' color="inherit">Home</Button>
-         <Button href ='/login' color="inherit">Login</Button>
+         {/* <Button href ='/login' color="inherit">Login</Button> */}
+        
+         {
+           token ? 
+           <Button onClick={() => setToken('')} color="inherit">Logout</Button>
+           :
+           <Button href ='/login' color="inherit">Login</Button>
+         }
+         
          <Button href ='/register' color="inherit">Register</Button>
+         <CartIcon/>
+         
+         <CartDropdown/>
+
         </Toolbar>
         </AppBar> 
           <Switch>

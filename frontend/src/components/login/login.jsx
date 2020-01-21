@@ -10,11 +10,16 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
 const useStyles = makeStyles(theme => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: 200,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       // alignItems: 'center',
       // justifyContent: 'center',
 
@@ -22,9 +27,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function SignInAndSignUpPage() {
+//   changeName = e => setToken('');
+// console.log(changeName)
+
+
+
+function SignInAndSignUpPage(props) {
 
   const classes = useStyles();
+
     // Make useState check sessionstorage instead of just using a default value we give it
     // Usually, it just uses a value we give it, but we need to give it a KEY and then check
     // sessionStorage for the value
@@ -67,14 +78,14 @@ function SignInAndSignUpPage() {
         }
           const res = await fetch(endpoint, configs);
           const auth_info = await res.json();
-          console.log(auth_info);
+          // console.log(auth_info);
           if (auth_info.token){
             setToken(auth_info.token)
           } else {
             setIsAuthError(true);
           }
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           setIsError(true);
         }
         setIsAuthenticating(false);
@@ -89,12 +100,27 @@ function SignInAndSignUpPage() {
       data = (
         <div>
           {/* Header is the links listings and add */}
-          <Header />
-          <Route exact path='/listings' component={Listings} />
-          <Route path='/add' component={Add} />
+          <div className={classes.root}>
+          <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+          <Button onClick ={()=> props.history.push('/listings')}>Selling Cart</Button>
+          <Button onClick ={()=> props.history.push('/add')}>Selling</Button>
+          </ButtonGroup>
+          </div>
+
+          {/* <Header /> */}
+          {/* <Route exact path='/listings' component={Listings} />
+          <Route path='/add' component={Add} /> */}
           <button onClick={e => setToken('')}>Log Out</button>
         </div>
-      )
+
+      //  <div className={classes.root}>
+      //   <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+      //   <Button>One</Button>
+      //   <Button>Two</Button>
+      //   <Button>Three</Button>
+      //   </ButtonGroup>
+      //   </div>
+      );
     } else {
       data = (
         <div style={{display:"flex"}}>
