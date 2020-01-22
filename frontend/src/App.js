@@ -113,7 +113,7 @@ function App({}) {
          <Button href ='/register' color="inherit">Register</Button>
          <CartIcon/>
          
-         <CartDropdown/>
+         {/* <CartDropdown/> */}
 
         </Toolbar>
         </AppBar> 

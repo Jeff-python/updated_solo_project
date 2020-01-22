@@ -14,4 +14,13 @@ const CartIcon = () => (
     </div>
 );
 
+export function cartButton(){
+    
+ return <button>Add to Cart</button>
+} ;
+
+cartButton();
+    
+
+
 export default CartIcon;

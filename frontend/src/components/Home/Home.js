@@ -12,8 +12,10 @@ import { withStyles } from '@material-ui/core/styles';
 import New from '../Add'
 import { Input } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import CollectionItem from '../collection-item/collection-item.component';
 // import axios from 'axios';
 // import CardList from '../card-list'
+import './Home.css';
 
 
 // import './App.css';
@@ -203,7 +205,8 @@ async componentDidMount() {
     return (
      
       <div className="App">
-           <SearchBox path = '/' component ={SearchBox} placeholder ='Search by Item' handleChange ={e=> this.setState({ searchField: e.target.value})} />
+        <div className ="Search">
+           <SearchBox  path = '/' component ={SearchBox} placeholder ='Search by Item' handleChange ={e=> this.setState({ searchField: e.target.value})} />
            {/* <input type = "search" placeholder ='Search by Zipcode' onChange={e => this.setState({zipcode: e.target.value})} /> */}
            <Input type = "search" placeholder ='Search by Zipcode' onChange={e => this.setState({zipcode: e.target.value})} />
 
@@ -226,19 +229,23 @@ async componentDidMount() {
            <Button variant="contained" size="small" color="white" onClick={e => this.SearchZip()}>Go</Button>
 
            {/* <SearchZip path = '/' setZips={this.setState} monsterzipcode = {this.state.monsterzipcode} placeholder ='search' handleChange ={e=> this.setState({ monsterzipcode: e.target.value})} /> */}
+           </div>
     
          <div className = "Button">
          {/* <button className = "button1" onClick ={ e => this.setState({ monsterId: `${monster[]}`})}  >Fair Price</button>   */}
-            <button className = "button1" onClick ={ e => this.setState({ monsterId: '10' })}  >Fair Price</button>          
-            <button className = "button2" onClick ={ e => this.setState({ monsterId: '20' })} >Good Price</button>
-            <button className = "button3" onClick ={ e => this.setState({ monsterId: '30' })} >Sale Price</button>
-            <button className = "button4" onClick ={ e => this.setState({ monsterId: '40' })} >Bargain Price</button>
-            <button className = "button5" onClick ={ e => this.setState({ monsterId: '50' })} >Sweet Price</button>
-            <button className = "button6" onClick ={ e => this.setState({ monsterId: '60' })} >ABC Price</button>
+            <Button  variant="contained" size="small" color="primary" onClick ={ e => this.setState({ monsterId: '10' })} >10% off</Button>          
+            <Button variant="contained" size="small" color="primary"className = "button2" onClick ={ e => this.setState({ monsterId: '20' })} >20% Off</Button>
+            <Button variant="contained" size="small" color="primary"className = "button3" onClick ={ e => this.setState({ monsterId: '30' })} >30% Off</Button>
+            <Button variant="contained" size="small" color="primary"className = "button4" onClick ={ e => this.setState({ monsterId: '40' })} >40% Off</Button>
+            <Button variant="contained" size="small" color="primary"className = "button5" onClick ={ e => this.setState({ monsterId: '50' })} >50% Off</Button>
+            <Button variant="contained" size="small" color="primary"className = "button6" onClick ={ e => this.setState({ monsterId: '60' })} >> 50% Off</Button>
           </div>
         
           <CardList monsters={filteredMonsters}>
           </CardList>
+          {/* <CollectionItem monsters={filteredMonsters}>
+          </CollectionItem> */}
+
           {/* <New monsters = {monsters}></New> */}
 
           {/* <addListing monsters ={monsters}> </addListing> */}

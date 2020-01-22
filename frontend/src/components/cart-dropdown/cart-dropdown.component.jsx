@@ -1,17 +1,17 @@
-import React from 'react';
+// import React from 'react';
 
-// import CustomButton from '../'
+// // import CustomButton from '../'
 
-import './cart-dropdown.styles.scss';
+// import './cart-dropdown.styles.scss';
 
 
-const CartDropdown = () => (
- <div className = 'cart-dropdown'>
-     <div className = 'cart-items'/>
+// const CartDropdown = () => (
+//  <div className = 'cart-dropdown'>
+//      <div className = 'cart-items'/>
 
-     {/* <CustomButton> GO TO CHECKOUT</CustomButton> */}
+//      {/* <CustomButton> GO TO CHECKOUT</CustomButton> */}
 
- </div>
-);
+//  </div>
+// );
 
-export default CartDropdown;
+// export default CartDropdown;

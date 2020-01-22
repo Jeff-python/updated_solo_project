@@ -1,13 +1,13 @@
 from PIL import Image
 import glob
 
-img_path = '/Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend/public/picture/1.jpg'
+# img_path = '/Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend/public/picture/testimage.jpg'
 
-im = Image.open(img_path)
-print( '{}'.format(im.format))
-print('size: {}'.format(im.size))
-print('image mode: {}'.format(im.size))
-# im.show()
+# im = Image.open(img_path)
+# print( '{}'.format(im.format))
+# print('size: {}'.format(im.size))
+# print('image mode: {}'.format(im.size))
+# # im.show()
 
 image_list = []
 resized_images = []
@@ -19,7 +19,7 @@ for filename in glob.glob('/Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend
 
 for image in image_list:
     # image.show()
-    image = image.resize((180,180))
+    image = image.resize((150,180))
     resized_images.append(image)
 
 for pic in resized_images:
