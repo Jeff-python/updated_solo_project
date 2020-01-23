@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import useForceUpdate from 'use-force-update';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,10 +23,13 @@ function Register() {
     const [inputUserName, setInputUserName] = useState('');
     const [inputEmail, setInputEmail] = useState('');
     const [inputPassWord, setInputPassWord] = useState('');
+    const [updateBool, setUpdateBool] = useState(true);
     // const [inputUserkey, setInputUserKey] = useState('');
     const classes = useStyles();
 
-    const addUser = () => {
+    const forceUpdate = useForceUpdate();
+
+    const addUser = async() => {
         const data = {
             "firstname": inputFirstName,
             "lastname": inputLastName,
@@ -40,13 +44,18 @@ function Register() {
             mode: 'cors',
             headers: {'Content-Type': 'application/json'}
         }
-        const response = fetch("http://localhost:5000/api/register", configs)
+        const response = await fetch("http://localhost:5000/api/register", configs)
         console.log(response)
+
+        // forceUpdate();
+        setUpdateBool(!updateBool);
+        setInputFirstName('')
     }
 
     return (
         <div style={{display:"flex"}}>
             {/* <p>This is the Add view!</p> */}
+            {updateBool}
             <div style = {{  margin: "auto"}}>
             <TextField required id="standard-required" label="First Name" onChange={e => setInputFirstName(e.target.value)}/>
             <br/>
@@ -59,7 +68,7 @@ function Register() {
             <TextField required id="standard-required" type="password" label="Password" onChange={e => setInputPassWord(e.target.value)} />
             <br/>
             <br/>
-            <Button size="small" aria-label="small" variant="contained"onClick={e => addUser()}>Submit</Button>
+            <Button size="small" aria-label="small" variant="contained" onClick={e => addUser()}>Submit</Button>
             {/* <button onClick={e => addUser()}>Submit</button> */}
             </div>
 {/* 
