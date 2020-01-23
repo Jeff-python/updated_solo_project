@@ -190,7 +190,7 @@ async componentDidMount() {
     const { monsters, searchField, monsterId } = this.state;
     // console.log(monsters)
     const filteredMonsters = monsters.filter(monster => 
-      monster[1].toLowerCase().includes(searchField.toLowerCase()) && monster[2] > monsterId && (this.state.monsterzipcode ? this.state.monsterzipcode.includes(monster[10]) : true)
+      monster[1].toLowerCase().includes(searchField.toLowerCase()) && monster[2] >= monsterId && (this.state.monsterzipcode ? this.state.monsterzipcode.includes(monster[10]) : true)
       // console.log(this.state.monsterzipcode.includes(monster[10]))
       // String.include
      
@@ -241,7 +241,7 @@ async componentDidMount() {
             <Button variant="contained" size="small" color="primary"className = "button6" onClick ={ e => this.setState({ monsterId: '60' })} >> 50% Off</Button>
           </div>
         
-          <CardList monsters={filteredMonsters}>
+          <CardList addToCart={this.props.addToCart} monsters={filteredMonsters}>
           </CardList>
           {/* <CollectionItem monsters={filteredMonsters}>
           </CollectionItem> */}

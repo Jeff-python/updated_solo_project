@@ -20,6 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import CartIcon from '../src/components/cart-icon/cart-icon.component';
 import CartDropdown from '../src/components/cart-dropdown/cart-dropdown.component';
+import {Buy_Cart} from '../src/components/Buy-cart';
 // import CardMedia from '@material-ui/core/CardMedia';
 // import Card from '@material-ui/core/Card';
 // import CardActionArea from '@material-ui/core/CardActionArea';
@@ -54,7 +55,14 @@ function App({}) {
       sessionStorage.getItem(sessionStorageKey) || '');
       return [token, setToken];
     };
-  const [token, setToken] = useStateWithSessionStorage('token')
+  const [token, setToken] = useStateWithSessionStorage('token');
+  const [cart, setCart] = useState([]);
+
+  function addToCart(item) {
+    const oldCart = [...cart];
+    oldCart.push(item);
+    setCart(oldCart);
+  }
 
   // superheroElement = React.createRef();
   // handleClick = () => {
@@ -111,19 +119,28 @@ function App({}) {
          }
          
          <Button href ='/register' color="inherit">Register</Button>
-         <CartIcon/>
+         <Link to='/cart'>
+         
+         <CartIcon/> 
+         </Link>
          
          {/* <CartDropdown/> */}
 
         </Toolbar>
         </AppBar> 
           <Switch>
-            <Route exact path='/' component={Home}/>
+            {/* <Route exact path='/' component={Home}/> */}
+            <Route exact path="/">
+              <Home addToCart={addToCart} />
+            </Route>
             <Route path='/login' component ={SignInAndSignUpPage}/>
             <Route path='/listings' component={Listings} />
-            <Route path='/add' component={Add} />>
-            <Route path='/register' component={Register} />>
-
+            <Route path='/add' component={Add} />
+            <Route path='/register' component={Register} />
+            {/* <Route path='/cart' component={Buy_Cart} /> */}
+            <Route exact path="/cart">
+             < Buy_Cart cart ={cart} setCart ={setCart}/>
+            </Route>
          </Switch>
          </div>
          );

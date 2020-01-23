@@ -20,11 +20,12 @@
 .name {
   width: 90%;
   margin-bottom: 15px;
-  padding-right: 45px;
+  padding-right: 30px;
 }
 
 .price {
-  width: 10%;
+  width: 20%;
+  /* padding-left: px; */
 }
 
 .collection-footer {
@@ -33,5 +34,18 @@
   display: flex;
   justify-content: space-between;
   font-size: 18px;
+}
+
+.collection {
+  width: 100%;
+  
+  padding-right: 50px;
+}
+
+.quantity {
+  
+  
+  padding-right: 130px;
+
 }
 

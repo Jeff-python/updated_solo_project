@@ -6,7 +6,7 @@ import  Add  from '../Add'
 
 export const CardList = props => {
     return <div className = 'card-list' >{props.monsters.map(monster =>(
-    <Card key ={monster[0]} monster= {monster}/>))}</div>;
+    <Card key ={monster[0]} monster= {monster} addToCart={props.addToCart}/>))}</div>;
 };
 
  

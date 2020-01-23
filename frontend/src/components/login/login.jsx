@@ -110,7 +110,8 @@ function SignInAndSignUpPage(props) {
           {/* <Header /> */}
           {/* <Route exact path='/listings' component={Listings} />
           <Route path='/add' component={Add} /> */}
-          <button onClick={e => setToken('')}>Log Out</button>
+
+          {/* <button onClick={e => setToken('')}>Log Out</button> */}
         </div>
 
       //  <div className={classes.root}>
