@@ -124,4 +124,11 @@ class Listing:
                     data[0])
             return None
 
+    @classmethod
+    def delete(cls, pk):
+        with sqlite3.connect(cls.dbpath) as conn:
+            cursor = conn.cursor()
+            SQL = """DELETE FROM listings WHERE pk=?"""
+            cursor.execute(SQL, (pk,))
+
 """curl -d '{"description":"Jeff", "discountrate":20, "retailprice":100, "reserveprice":"80", "expirationdate":"05/01/2020", "quantity": 5, "contactname" :"jeff", "telephonenumber":"7189026127", "pickuplocation":"queens", "zipcode":"11354", "user_key":12345}' -H "Content-Type: application/json" -X POST http://localhost:5000/api/add"""

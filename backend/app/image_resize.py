@@ -11,8 +11,8 @@ import glob
 
 image_list = []
 resized_images = []
-
-for filename in glob.glob('/Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend/public/picture/*.jpg'):
+  
+for filename in glob.glob('/Users/jeffreyzheng/byte_academy/phase2/p4_solo_project_final_version/backend/*.jpg'):
     print(filename)
     img = Image.open(filename)
     image_list.append(img)
@@ -24,6 +24,6 @@ for image in image_list:
 
 for pic in resized_images:
     pic.show()
-
+   
 for (i,new) in enumerate(resized_images):
-    new.save('{}{}{}'.format('/Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend/public/resize_pictures/picture',i+1, '.jpg'))
+    new.save('{}{}{}'.format('/Users/jeffreyzheng/byte_academy/phase2/p4_solo_project_final_version/frontend/public/resize_pictures/picture',i+1, '.jpg'))

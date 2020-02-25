@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -91,6 +92,9 @@ function SignInAndSignUpPage(props) {
         setIsAuthenticating(false);
       }
       sendData();
+      // {setToken()}
+      props.addToToken();
+     
     };
   
     let data = null;
@@ -112,6 +116,7 @@ function SignInAndSignUpPage(props) {
           <Route path='/add' component={Add} /> */}
 
           {/* <button onClick={e => setToken('')}>Log Out</button> */}
+
         </div>
 
       //  <div className={classes.root}>
@@ -127,6 +132,9 @@ function SignInAndSignUpPage(props) {
         <div style={{display:"flex"}}>
             {/* <p>This is the Add view!</p> */}
             <div style = {{  margin: "auto"}}>
+              <Typography color="primary" style={{ fontSize: '25px' }} style={{ fontWeight: 'Bold' }}>
+                Log In
+              </Typography>
             <TextField  label="User Name" onChange={e => setInputUser(e.target.value)} placeholder="Username" />
             <br/>
             <TextField  label="Password" type="password" onChange={e => setInputPassword(e.target.value)}/>

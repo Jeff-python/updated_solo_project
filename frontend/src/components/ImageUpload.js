@@ -83,7 +83,13 @@ class ImageUpload extends Component {
         UPLOAD PNG Images
         </Typography>
           
+
+          
+          
           <input type ="file" name ="file" onChange ={(e)=> this.onChange(e)}/>
+           {/* <img alt ="image" src ={`/resize_pictures/picture${this.props.monster[12]}.jpg`} />  */}
+          
+
           {/* <img src="data:image/png;base64,[]"/> */}
         </div>
         

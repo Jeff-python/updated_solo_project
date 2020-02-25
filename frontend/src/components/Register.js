@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import useForceUpdate from 'use-force-update';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -17,19 +18,22 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
-function Register() {
+function Register({history}) {
     const [inputFirstName, setInputFirstName] = useState('');
     const [inputLastName, setInputLastName] = useState('');
     const [inputUserName, setInputUserName] = useState('');
     const [inputEmail, setInputEmail] = useState('');
     const [inputPassWord, setInputPassWord] = useState('');
-    const [updateBool, setUpdateBool] = useState(true);
+    const [reset, setReset] = useState(false);
     // const [inputUserkey, setInputUserKey] = useState('');
     const classes = useStyles();
 
     const forceUpdate = useForceUpdate();
 
-    const addUser = async() => {
+ 
+
+   function addUser()  {
+
         const data = {
             "firstname": inputFirstName,
             "lastname": inputLastName,
@@ -44,19 +48,33 @@ function Register() {
             mode: 'cors',
             headers: {'Content-Type': 'application/json'}
         }
-        const response = await fetch("http://localhost:5000/api/register", configs)
-        console.log(response)
+        const response = fetch("http://localhost:5000/api/register", configs)
+        // setReset(true);
+        // if (reset); {
+        
+        //   }
+        // console.log(data);
 
         // forceUpdate();
-        setUpdateBool(!updateBool);
-        setInputFirstName('')
+        // setUpdateBool({});
+        // history.push('/register');
+
+        document.getElementById("form").reset();
+        // history.push('/login');
+        
+        
+        
     }
 
     return (
-        <div style={{display:"flex"}}>
+        <form id = 'form' style={{display:"flex"}}>
             {/* <p>This is the Add view!</p> */}
-            {updateBool}
+            
+           
             <div style = {{  margin: "auto"}}>
+            <Typography color="primary" style={{ fontSize: '25px' }} style={{ fontWeight: 'Bold' }} >
+              Registration
+            </Typography>
             <TextField required id="standard-required" label="First Name" onChange={e => setInputFirstName(e.target.value)}/>
             <br/>
             <TextField required id="standard-required" label="Last Name" onChange={e => setInputLastName(e.target.value)}/>
@@ -69,6 +87,7 @@ function Register() {
             <br/>
             <br/>
             <Button size="small" aria-label="small" variant="contained" onClick={e => addUser()}>Submit</Button>
+            
             {/* <button onClick={e => addUser()}>Submit</button> */}
             </div>
 {/* 
@@ -81,7 +100,7 @@ function Register() {
 
            {/* User_key: <input id="user_key" type="text" onChange={e => setInputUserKey(e.target.value)}/><br/> */}
            
-        </div>        
+        </form>        
     )
 }
 

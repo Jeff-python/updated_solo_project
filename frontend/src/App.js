@@ -21,6 +21,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CartIcon from '../src/components/cart-icon/cart-icon.component';
 import CartDropdown from '../src/components/cart-dropdown/cart-dropdown.component';
 import {Buy_Cart} from '../src/components/Buy-cart';
+import MewIcon from '../src/components/mew-icon/mew.component';
 // import CardMedia from '@material-ui/core/CardMedia';
 // import Card from '@material-ui/core/Card';
 // import CardActionArea from '@material-ui/core/CardActionArea';
@@ -30,6 +31,8 @@ import {Buy_Cart} from '../src/components/Buy-cart';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    
+   
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -57,12 +60,34 @@ function App({}) {
     };
   const [token, setToken] = useStateWithSessionStorage('token');
   const [cart, setCart] = useState([]);
+  const [count,setCount] =useState(0)
 
   function addToCart(item) {
     const oldCart = [...cart];
     oldCart.push(item);
     setCart(oldCart);
+    // const oldCount = Number(count)
+    // oldCount ++
+    // setCount(oldCount)
+    console.log(oldCart)
   }
+
+  function addToToken(key) {
+    const oldToken = [...token];
+    oldToken.push(key);
+    setToken(oldToken);
+    console.log(oldToken)
+  }
+
+  // function addToCount(){
+  //   const oldCount = Number(count)
+  //   oldCount ++
+  //   setCount(oldCount)
+  // }
+
+  
+
+  
 
   // superheroElement = React.createRef();
   // handleClick = () => {
@@ -77,11 +102,19 @@ function App({}) {
   // let token = sessionStorage.getItem('');
   // console.log(token)}
 
+  // if (token){
+    
+  //   document.getElementById('token').innerHTML = 'LOGOUT';
+  // }
+
+
+
     return (
      
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar elevation = {0} position="static">
         <Toolbar>
+        <MewIcon/>
         <Typography variant="h6" className={classes.title}>
            ABC MARKET
         </Typography>
@@ -113,15 +146,25 @@ function App({}) {
         
          {
            token ? 
-           <Button onClick={() => setToken('')} color="inherit">Logout</Button>
+           <div>
+           <Button href ='/login' color="inherit">Profile</Button>
+           <Button id = 'token' href = '/' onClick={() => setToken('')} color="inherit">Logout</Button>
+           </div>
            :
            <Button href ='/login' color="inherit">Login</Button>
+           
          }
+         <Link>
+         <div>
+
+
+         </div>
+         </Link>
          
          <Button href ='/register' color="inherit">Register</Button>
          <Link to='/cart'>
          
-         <CartIcon/> 
+         <CartIcon cart={cart}/> 
          </Link>
          
          {/* <CartDropdown/> */}
@@ -133,7 +176,15 @@ function App({}) {
             <Route exact path="/">
               <Home addToCart={addToCart} />
             </Route>
-            <Route path='/login' component ={SignInAndSignUpPage}/>
+{/* 
+            <Route path='/login' component={SignInAndSignUpPage} /> */}
+            <Route path='/login' 
+            render= {(props) => <SignInAndSignUpPage {...props} 
+            token={token} setToken={setToken} addToToken={addToToken}/> }/>
+
+            {/* <Route path='/login'>
+            <SignInAndSignUpPage  token ={token} setToken={setToken}/>
+            </Route> */}
             <Route path='/listings' component={Listings} />
             <Route path='/add' component={Add} />
             <Route path='/register' component={Register} />
