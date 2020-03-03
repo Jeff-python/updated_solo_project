@@ -49,6 +49,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// componentWillUpdate();{
+
+//   localStorage.setItem(cart,cart);
+// };
 
 function App({}) {
   const classes = useStyles();
@@ -60,24 +64,100 @@ function App({}) {
     };
   const [token, setToken] = useStateWithSessionStorage('token');
   const [cart, setCart] = useState([]);
-  const [count,setCount] =useState(0)
+  const [cartList, setCartList] =useState([])
+  const [count,setCount] = useState([]);
+  const [id,setId] = useState([]);
+  const [oldCartList] =[]
+ 
 
+
+  
+  
+ 
   function addToCart(item) {
     const oldCart = [...cart];
-    oldCart.push(item);
-    setCart(oldCart);
+    const oldCount = [...count];
+    const oldId =[];
+    const oldCartList = [...cartList];
+    
+    
+    oldCount.push(item[0]);
+    setCount(oldCount);
+    
+    if (count.includes(item[0])){
+      //  cart.includes(item[0]);
+      //  item[6]=0
+       (item[6]++);
+       oldId.push(item[0]);
+       setId(oldId);
+    
+    // if (wCount.includes(item[0])) {
+    //   item[6]++;
+    // console.log(oldCount)
+    
+
+    }
+    else{
+    cart.push(item[0]);
+    // setCart(oldCart);
+    oldId.push(item[0]);
+    oldCartList.push(item);
+    setCartList(oldCartList)
+    setId(oldId);
     // const oldCount = Number(count)
     // oldCount ++
     // setCount(oldCount)
-    console.log(oldCart)
+    // console.log('oldcart',oldCart)
+    console.log('cartList',cartList)
+    // console.log(item[0])
+    // console.log('cart',cart)
+    // console.log(cart[0])
+    
+    
   }
+  sessionStorage.setItem(`${oldId}`,`${item}`)
+  console.log(oldId)
+  
+  // console.log((window.sessionStorage.getItem('1')))
+  console.log(Object.keys(sessionStorage));
+  
+  
+
+    
+  const wCount = [window.sessionStorage.item]
+
+
+
+
+
+
+}
+
+
+ 
 
   function addToToken(key) {
     const oldToken = [...token];
     oldToken.push(key);
     setToken(oldToken);
-    console.log(oldToken)
+    // console.log(oldToken)
   }
+
+  function removeItem(item) {
+    const oldCart = [...cart];
+    console.log(oldCart)
+    oldCart.splice(item,1);
+    setCart(oldCart);
+    console.log(cart)
+    // const newData = {
+    //   "pk": data[item][0]
+    }
+
+
+
+  // useEffect(() => {
+  //   sessionStorage.setItem('token', token);
+  // }, [cart])
 
   // function addToCount(){
   //   const oldCount = Number(count)
@@ -96,8 +176,10 @@ function App({}) {
   useEffect(() => {
     sessionStorage.setItem('token', token);
   }, [token])
+
+  
   // let token = sessionStorage.getItem('');
-  console.log(token)
+  // console.log(token)
   // function handleClick(){
   // let token = sessionStorage.getItem('');
   // console.log(token)}
@@ -141,30 +223,37 @@ function App({}) {
                     image = "Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend/src/panda.png"/> 
         </CardActionArea>
         </Card> */}
-         <Button href ='/' color="inherit">Home</Button>
-         {/* <Button href ='/login' color="inherit">Login</Button> */}
+        
+         {/* <Link to ='/' color="inherit"><Typography>Home</Typography></Link> */}
+         
+         <Link style={{ textDecoration: 'none', color: 'white' }} to ='/'>
+          <Button color="inherit">Home</Button>
+         </Link>
+
+  
+        
         
          {
            token ? 
            <div>
-           <Button href ='/login' color="inherit">Profile</Button>
+           <Link style={{ textDecoration: 'none', color: 'white' }} to ='/login'>
+           <Button  color="inherit">Profile</Button>
+           </Link>
            <Button id = 'token' href = '/' onClick={() => setToken('')} color="inherit">Logout</Button>
            </div>
            :
+           <Link style={{ textDecoration: 'none', color: 'white' }} to ='/login'>
            <Button href ='/login' color="inherit">Login</Button>
+           </Link>
            
          }
-         <Link>
-         <div>
-
-
-         </div>
-         </Link>
          
+         <Link style={{ textDecoration: 'none', color: 'white' }} to ='/register'>
          <Button href ='/register' color="inherit">Register</Button>
-         <Link to='/cart'>
+         </Link>
+         <Link style={{ textDecoration: 'none', color: 'white' }} to='/cart'>
          
-         <CartIcon cart={cart}/> 
+         <CartIcon count={count}/> 
          </Link>
          
          {/* <CartDropdown/> */}
@@ -174,7 +263,7 @@ function App({}) {
           <Switch>
             {/* <Route exact path='/' component={Home}/> */}
             <Route exact path="/">
-              <Home addToCart={addToCart} />
+              <Home addToCart={addToCart}/>
             </Route>
 {/* 
             <Route path='/login' component={SignInAndSignUpPage} /> */}
@@ -190,7 +279,7 @@ function App({}) {
             <Route path='/register' component={Register} />
             {/* <Route path='/cart' component={Buy_Cart} /> */}
             <Route exact path="/cart">
-             < Buy_Cart cart ={cart} setCart ={setCart}/>
+             < Buy_Cart cartList={cartList} cart ={cart} setCart ={setCart} removeItem={removeItem}/>
             </Route>
          </Switch>
          </div>

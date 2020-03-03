@@ -238,10 +238,10 @@ async componentDidMount() {
             <Button variant="contained" size="small" color="primary"className = "button3" onClick ={ e => this.setState({ monsterId: '30' })} >30% Off</Button>
             <Button variant="contained" size="small" color="primary"className = "button4" onClick ={ e => this.setState({ monsterId: '40' })} >40% Off</Button>
             <Button variant="contained" size="small" color="primary"className = "button5" onClick ={ e => this.setState({ monsterId: '50' })} >50% Off</Button>
-            <Button variant="contained" size="small" color="primary"className = "button6" onClick ={ e => this.setState({ monsterId: '60' })} >> 50% Off</Button>
+            <Button variant="contained" size="small" color="primary"className = "button6" onClick ={ e => this.setState({ monsterId: '60' })} >>50% Off</Button>
           </div>
         
-          <CardList addToCart={this.props.addToCart} monsters={filteredMonsters}>
+          <CardList addToCart={this.props.addToCart}  monsters={filteredMonsters}>
           </CardList>
           {/* <CollectionItem monsters={filteredMonsters}>
           </CollectionItem> */}

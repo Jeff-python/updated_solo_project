@@ -10,7 +10,7 @@ import './cart-icon.styles.scss';
 const CartIcon = (props) => (
     <div className = 'cart-icon'>
         <ShoppingIcon className = 'shopping-icon'/>
-        <span className = 'item-count'>{props.cart.length}</span>
+        <span className = 'item-count'>{props.count.length}</span>
         <span className = 'item-count'></span>
     </div>
 );

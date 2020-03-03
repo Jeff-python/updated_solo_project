@@ -165,7 +165,7 @@ function Add() {
     <form id="form" className={classes.root} style={{ display: "flex" }}>
       <div style={{ margin: "auto" }}>
         <ImageUpload></ImageUpload>
-        {/* <img src ={`/resize_pictures/${inputImagepath +1}.jpg`} ></img> */}
+         <img src ={`/resize_pictures/${inputImagepath +1}.jpg`} ></img> 
         {/* <div style = {{display :"flex"}}/> */}
         <div style={{ margin: "auto" }}>
           <TextField
