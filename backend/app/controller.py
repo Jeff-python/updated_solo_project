@@ -187,10 +187,12 @@ def upload():
         file_to_save.write(decoded_image_data)
 
         basewidth = 150
+        # basewidth = 28
         img =Image.open(('{}{}{}'.format('/Users/jeffreyzheng/byte_academy/phase2/p4_solo_project_final_version/frontend/public/resize_pictures/',i, '.jpg'))).convert('RGB')
-        # print('size: {}'.format(img.size))
+        print('size: {}'.format(img.size))
         # wpercent =(basewidth / float(img.size[0]))
         hsize = int(180)
+        # hsize = int(28)
         # hsize = int((float(img.size[1]) *float(wpercent)))
 
         img =img.resize((basewidth,hsize), Image.ANTIALIAS)

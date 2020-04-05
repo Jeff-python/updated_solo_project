@@ -91,6 +91,11 @@ function Add() {
   // const [inputUserkey, setInputUserKey] = useState('');
   const classes = useStyles();
 
+  // useEffect(() => {
+  //   setInputImagepath('',inputImagepath);
+  // }, [inputImagepath])
+  // console.log(inputImagepath)
+
   useEffect(() => {
     let getData = async () => {
       let data = await fetch('http://localhost:5000/api/id')
@@ -103,8 +108,10 @@ function Add() {
       setInputImagepath(data)
       }
       getData();
-      }, 
+      }, [inputImagepath]
+      
     );
+    console.log(inputImagepath)
 
 
 
@@ -122,12 +129,15 @@ function Add() {
       zipcode: Number(inputZipCode),
       user_key: sessionStorage.getItem("token"),
       imagepath: `/resize_pictures/${inputImagepath +1}.jpg`
+
+     
       // imagepath: `/resize_pictures/1.jpg`
       // imagepath: 
       // imagepath: `/resize_pictures/picture${monster.id}.jpg`
 
       // `/Users/jeffreyzheng/byte_academy/phase2/p4_0/frontend/public/resize_pictures/picture${props.monster.length}.jpg`
     };
+    console.log(inputImagepath)
     //
     // const getData = fetch("http://localhost:5000/api/id");
     // console.log({"getdata": getData});
@@ -165,7 +175,7 @@ function Add() {
     <form id="form" className={classes.root} style={{ display: "flex" }}>
       <div style={{ margin: "auto" }}>
         <ImageUpload></ImageUpload>
-         <img src ={`/resize_pictures/${inputImagepath +1}.jpg`} ></img> 
+         <img src ={`/resize_pictures/${inputImagepath}.jpg`} ></img> 
         {/* <div style = {{display :"flex"}}/> */}
         <div style={{ margin: "auto" }}>
           <TextField

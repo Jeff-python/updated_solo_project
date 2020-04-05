@@ -90,12 +90,6 @@ function App({}) {
        (item[6]++);
        oldId.push(item[0]);
        setId(oldId);
-    
-    // if (wCount.includes(item[0])) {
-    //   item[6]++;
-    // console.log(oldCount)
-    
-
     }
     else{
     cart.push(item[0]);
@@ -104,14 +98,8 @@ function App({}) {
     oldCartList.push(item);
     setCartList(oldCartList)
     setId(oldId);
-    // const oldCount = Number(count)
-    // oldCount ++
-    // setCount(oldCount)
-    // console.log('oldcart',oldCart)
     console.log('cartList',cartList)
-    // console.log(item[0])
-    // console.log('cart',cart)
-    // console.log(cart[0])
+
     
     
   }
